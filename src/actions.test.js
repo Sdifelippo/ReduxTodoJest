@@ -1,24 +1,21 @@
-import reducer from "./reducer";
-import { createTodo } from "./actions";
+import {createTodo} from "./actions";
+import {toggleTodo} from "./actions";
+import {filterTodos} from "./actions";
 
-describe("CREATE_TODO", function () {
-    test("creates a new todo", function () {
-        const initialState = {todos: [], nextId: 1}
-        const state = reducer(initialState, createTodo("Test"));
-        expect(state.todos).toHaveLength(1);
-        expect(state.todos[0]).toEqual({id: 1, done: false, text: "Test"});
-    })
+describe("CREATE_TODO yields a type text", () => {
+  it("should call a CREATE_TODO action", () => {
+    expect(createTodo("test")).toEqual({type: "CREATE_TODO", payload: "test"})
+  })
+});
 
-    test("updates nextId", function () {
-        const initialState = {todos: [], nextId: 1}
-        const state = reducer(initialState, createTodo("Test"));
-        expect(state.nextId).toEqual(2);
-    })
-})
+describe("TOGGLE_TODO yields a type text", () => {
+  it("should call a TOGGLE_TODO action", () => {
+    expect(toggleTodo("test")).toEqual({type: "TOGGLE_TODO", payload: "test"})
+  })
+});
 
-test("updates nextId", function () {
-    const FilterTodos = {all: [], nextId: 1}
-    const state = reducer(initialState, filterTodos("Test"));
-    expect(state.nextId).toEqual(2);
-})
-})
+describe("FILTER_TODOS yields a type text", () => {
+  it("should call a FILTER_TODOS action", () => {
+    expect(filterTodos("test")).toEqual({type: "FILTER_TODOS", payload: "test"})
+  })
+});
